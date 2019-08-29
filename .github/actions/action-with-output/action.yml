@@ -1,0 +1,12 @@
+name: The output returned
+description: Github Action that returns 42 as output
+author: 'Damian Mee <spam@meedamian.com>'
+
+outputs:
+  some-value:
+    description: This is the output being returned
+    value: 42
+
+runs:
+  using: docker
+  image: Dockerfile

@@ -1,0 +1,27 @@
+name: Trigger daily, and perform some tasks
+
+on:
+  schedule:
+    - cron:  '*/5 * * * *'
+#    - cron:  '0 8 * * *'
+
+jobs:
+  scheduled-run:
+    name: Create, and push git tag
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1.0.0
+
+      - name: Create and push new tag
+        uses: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
+          git commit --allow-empty -m 'Nothing to see here.  Commited by trigger-daily.yml'
+
+          REMOTE="https://${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push "${REMOTE}" master:tags-test
+
+          TAG="v0.0.1-$(date +%F)+$(echo ${GITHUB_SHA} | cut -c1-7)"
+          git tag -a "${TAG}" -m "${TAG}"
+          git push  "${REMOTE}"  "${TAG}"
