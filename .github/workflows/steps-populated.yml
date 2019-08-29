@@ -10,7 +10,7 @@ jobs:
         - uses: actions/checkout@v1.0.0
 
         - name: Run action that outputs output
-          uses: .github/actions/action-with-output
+          uses: ./.github/actions/action-with-output
 
         - name: Inspect the contents of `steps`
           run: ${{ toJson(steps) }}
