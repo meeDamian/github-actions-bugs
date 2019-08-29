@@ -1,6 +1,9 @@
 name: Check if steps is properly populated
 
-on: push
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   check-steps:
