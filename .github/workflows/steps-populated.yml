@@ -1,18 +1,16 @@
-name: Check if steps is properly populated
-
-on: push
-
-jobs:
-  check-steps:
-    name: Action output job
-    runs-on: ubuntu-18.04
-    steps:
-        - uses: actions/checkout@v1.0.0
-
-        - name: Run action that outputs output
-          uses: ./.github/actions/action-with-output
-
-        - name: Inspect the contents of `steps`
-          run: test $(echo "${{ toJson(steps) }}" | jq '. | length') -gt 0
-
-
+#name: Check if steps is properly populated
+#
+#on: push
+#
+#jobs:
+#  check-steps:
+#    name: Action output job
+#    runs-on: ubuntu-18.04
+#    steps:
+#        - uses: actions/checkout@v1.0.0
+#
+#        - name: Run action that outputs output
+#          uses: ./.github/actions/action-with-output
+#
+#        - name: Inspect the contents of `steps`
+#          run: test $(echo "${{ toJson(steps) }}" | jq '. | length') -gt 0
