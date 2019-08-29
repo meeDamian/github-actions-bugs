@@ -15,7 +15,8 @@ jobs:
       - name: Create and push new tag
         run: |
           cd "${GITHUB_WORKSPACE}" || exit 1
-          git status
+
+          git checkout -b tags-test
 
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
@@ -26,7 +27,7 @@ jobs:
           git remote -v
 
           REMOTE="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
-          git push "${REMOTE}" HEAD:tags-test
+          git push "${REMOTE}" tags-test
 
           TAG="v0.0.1-$(date +%F)+$(echo ${GITHUB_SHA} | cut -c1-7)"
           git tag -a "${TAG}" -m "${TAG}"
