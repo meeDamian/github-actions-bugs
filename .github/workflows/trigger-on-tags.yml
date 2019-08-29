@@ -16,4 +16,7 @@ jobs:
         run: echo ${{ GITHUB_REF }}
 
       - name: "Check if it's an actual tag"
-        run: [[ ${{ GITHUB_REF }} == refs/tags* ]]
+        run: |
+          if [[ ${{ GITHUB_REF }} != refs/tags* ]]; then
+            exit 1
+          fi
