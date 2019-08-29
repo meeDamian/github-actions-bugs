@@ -22,7 +22,7 @@ jobs:
 
           git commit --allow-empty -m 'Nothing to see here.  Commited by trigger-daily.yml'
 
-          REMOTE="https://${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          REMOTE="https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
           git push "${REMOTE}" master:tags-test
 
           TAG="v0.0.1-$(date +%F)+$(echo ${GITHUB_SHA} | cut -c1-7)"
