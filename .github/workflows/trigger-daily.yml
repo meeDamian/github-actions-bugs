@@ -22,6 +22,9 @@ jobs:
 
           git commit --allow-empty -m 'Nothing to see here.  Commited by trigger-daily.yml'
 
+          git config -l
+          git remote -v
+
           REMOTE="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
           git push "${REMOTE}" HEAD:tags-test
 
