@@ -13,10 +13,10 @@ jobs:
       - uses: actions/checkout@v1.0.0
 
       - name: Print current ref
-        run: echo ${{ GITHUB_REF }}
+        run: echo ${GITHUB_REF}
 
       - name: "Check if it's an actual tag"
         run: |
-          if [[ ${{ GITHUB_REF }} != refs/tags* ]]; then
+          if [[ ${GITHUB_REF} != refs/tags* ]]; then
             exit 1
           fi
