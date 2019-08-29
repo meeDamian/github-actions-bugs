@@ -27,5 +27,7 @@ jobs:
           git push "${REMOTE}" master
 
           TAG="v0.0.1-$(date +%F)+$(echo ${GITHUB_SHA} | cut -c1-7)"
+
+          echo "Creating and pushing: ${TAG}"
           git tag -a "${TAG}" -m "${TAG}"
           git push  "${REMOTE}"  "${TAG}"
