@@ -2,7 +2,8 @@ name: Should trigger on git tag push
 
 on:
   push:
-    tags: *
+    tags:
+      - '*'
 
 jobs:
   check-steps:
