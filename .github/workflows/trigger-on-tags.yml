@@ -15,6 +15,6 @@ jobs:
       - name: Print current ref
         run: echo ${{ GITHUB_REF }}
 
-      - name: Check if it's an actual tag
-        if: {{ !startsWith(github.ref, 'refs/tags/') }}
+      - name: "Check if it's an actual tag"
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         run: exit 1
