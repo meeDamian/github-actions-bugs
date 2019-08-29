@@ -17,6 +17,6 @@ jobs:
 
       - name: "Check if it's an actual tag"
         run: |
-          if [[ ${GITHUB_REF} != refs/tags* ]]; then
+          if [[ ${GITHUB_REF} != refs/tags/* ]]; then
             exit 1
           fi
