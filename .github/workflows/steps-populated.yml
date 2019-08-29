@@ -13,4 +13,4 @@ jobs:
           uses: ./.github/actions/action-with-output
 
         - name: Inspect the contents of `steps`
-          run: echo ${{ toJson(steps) }}
+          run: echo ${{ toJson(steps) }} | jq
