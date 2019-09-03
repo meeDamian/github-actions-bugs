@@ -4,10 +4,10 @@ name: Check if steps is properly populated
 #
 #   `steps` should contain info about steps, including `output`s of previous steps, currently it doesn't
 #
+
 on:
-  push:
-    branches:
-      - master
+  schedule:
+    - cron:  '0 1 * * *'
 
 jobs:
   check-steps:
