@@ -5,7 +5,12 @@ name: Check if steps is properly populated
 #   `steps` should contain info about steps, including `output`s of previous steps, currently it doesn't
 #
 
+# Trigger on pushes to master as well as cron
 on:
+  push:
+    branches:
+      - master
+
   schedule:
     - cron:  '0 1 * * *'
 
