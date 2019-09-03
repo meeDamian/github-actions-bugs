@@ -1,0 +1,32 @@
+name: Check if GITHUB_TOKEN has package permissions
+
+# src: https://help.github.com/en/articles/virtual-environments-for-github-actions#token-permissions
+#
+#   The way I understand it, is that the token should have read/write perms for
+#     packages
+#
+# Trigger on pushes to master as well as cron
+on:
+  push:
+    branches:
+      - master
+
+  schedule:
+    - cron:  '0 2 * * *'
+
+jobs:
+  check-steps:
+    name: Check GITHUB_TOKEN
+    runs-on: ubuntu-18.04
+    steps:
+        - uses: actions/checkout@v1.0.0
+
+        - name: Check if token allows to login
+          run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u="${GITHUB_ACTOR,,}" --password-stdin
+
+        - name: Check if push is possible
+          run: |
+            TAG=$(date +%F)
+            docker pull alpine:3.10
+            docker tag alpine:3.10 "docker.pkg.github.com/meedamian/github-actions-bugs/alpine:${TAG}"
+            docker push "docker.pkg.github.com/meedamian/github-actions-bugs/alpine:${TAG}"
