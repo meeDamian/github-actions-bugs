@@ -1,5 +1,3 @@
-name: Should trigger on git tag push
-
 # See: https://github.community/t5/GitHub-API-Development-and/How-to-restrict-execution-of-GitHub-Actions-workflow-on-tags/m-p/29567
 # Workaround:
 #
@@ -16,7 +14,7 @@ on:
 
 jobs:
   check-steps:
-    name: Git tag job
+    name: Should trigger on git tag push
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v1.0.0
