@@ -1,0 +1,27 @@
+name: Check if setting job-level env vars works
+
+# src: https://github.community/t5/GitHub-Actions/Support-global-environment-variables/m-p/30488/highlight/true#M445
+#
+#   `env` should be available in job context, and its contents accessible to all steps
+#
+
+# Trigger on pushes to master as well as cron
+on:
+  push:
+    branches:
+      - master
+
+  schedule:
+    - cron:  '0 3 * * *'
+
+jobs:
+  check-steps:
+    name: Check job-level environment variables
+    runs-on: ubuntu-18.04
+    env:
+      MY_ENV_VAR: "all_good"
+    steps:
+      - uses: actions/checkout@v1.0.0
+
+      - name: Run action that outputs output
+        run: test "${MY_ENV_VAR}" = "all_good"
