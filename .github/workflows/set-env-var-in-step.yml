@@ -24,10 +24,10 @@ jobs:
           echo ::set-env name=EXAMPLE::"$(echo "${GITHUB_REPOSITORY,,}" | sed 's/github-//')"
 
           # Check if variable is available in the same step
-          test "${EXAMPLE}" = "actions-bugs"
+          test "${EXAMPLE}" = "meedamian/actions-bugs"
 
       - name: Check if EXAMPLE is available in immediate step
-        run: test "${EXAMPLE}" = "actions-bugs"
+        run: test "${EXAMPLE}" = "meedamian/actions-bugs"
 
       - name: Check if EXAMPLE is available in later step(s)
-        run: test "${EXAMPLE}" = "actions-bugs"
+        run: test "${EXAMPLE}" = "meedamian/actions-bugs"
