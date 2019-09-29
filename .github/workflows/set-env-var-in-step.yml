@@ -1,0 +1,33 @@
+# src: https://github.com/meeDamian/github-actions-bugs/issues/2#issuecomment-536308426
+#
+#   Environment variable set (using GH magic) in one step, should be available in all next ones
+#
+
+# Trigger on pushes to master as well as cron
+on:
+  push:
+    branches:
+      - master
+
+  schedule:
+    - cron: '0 3 * * *'
+
+jobs:
+  check-steps:
+    name: Check if setting Env Var works across steps
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1.0.0
+
+      - name: Set Environment variable EXAMPLE
+        run: |
+          echo ::set-env name=EXAMPLE::"$(echo "${GITHUB_REPOSITORY,,}" | sed 's/github-//')"
+
+          # Check if variable is available in the same step
+          test "${EXAMPLE}" = "actions-bugs"
+
+      - name: Check if EXAMPLE is available in immediate step
+        run: test "${EXAMPLE}" = "actions-bugs"
+
+      - name: Check if EXAMPLE is available in later step(s)
+        run: test "${EXAMPLE}" = "actions-bugs"
