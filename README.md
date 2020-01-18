@@ -1,5 +1,7 @@
 # github-actions-bugs
 
+> # ⚠️ Github Actions are quite mature now, making this repo not very useful, and therfore retired & archived ☠️.
+
 This repo aims to track progress of some of the bugs in Github Actions
 
 | status                  | Description
